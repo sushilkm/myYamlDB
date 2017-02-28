@@ -73,9 +73,9 @@ func main() {
 				fmt.Println("OPEN A DATABASE FIRST: 'use-db <db-name>'")
 				continue
 			}
-			if len(cmdPieces) > 1 {
+			if strings.ToUpper(cmdPieces[0]) != "LIST-TABLES" && len(cmdPieces) > 1 && !strings.Contains(cmdPieces[1], ":") {
 				text = strings.Replace(text, cmdPieces[1], dbName+":"+cmdPieces[1], -1)
-			} else {
+			} else if len(cmdPieces) == 1 && strings.ToUpper(cmdPieces[0]) == "LIST-TABLES" {
 				text = strings.Trim(text, "\n") + " " + dbName + "\n"
 			}
 		}
